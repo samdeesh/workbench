@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://samdeesh.github.io/workbench/sitemap.xml
+Sitemap: https://bench.foundry.blog/sitemap.xml
