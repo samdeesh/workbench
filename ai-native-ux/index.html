@@ -39,8 +39,16 @@
         </nav>
       </div>
 
-      <!-- Header External Link to Blog -->
-      <div style="display: flex; align-items: center; gap: 14px;">
+      <!-- Header External Link to Blog & GitHub Stars -->
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="https://github.com/samdeesh/blog-demos" target="_blank" rel="noopener noreferrer" class="header-github-star" title="Star samdeesh/blog-demos on GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.163L12 18.896l-7.333 3.861 1.399-8.163-5.934-5.784 8.2-1.192zm0 5.702l-2.232 4.522-4.991.725 3.612 3.521-.852 4.968L12 17.756l4.463 2.347-.852-4.968 3.612-3.521-4.991-.725L12 6.289z"/>
+          </svg>
+          <span>Star</span>
+          <span class="github-star-count" data-repo="samdeesh/blog-demos">★</span>
+        </a>
+
         <a href="https://foundry.blog/" target="_blank" rel="noopener noreferrer" class="header-blog-link" title="Open article on Foundry.blog">
           <span>Read more on Foundry.blog</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -114,7 +122,7 @@
           </p>
         </div>
 
-        <!-- Search Box with Live Autosuggest -->
+        <!-- Search Box with Live Autosuggest & Multimodal Voice -->
         <div class="search-box-wrapper">
           <div class="search-input-container">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -125,9 +133,29 @@
               type="text" 
               id="main-search-input" 
               class="search-input-field" 
-              placeholder="Type 'statements', 'margin', or 'churn'..." 
+              placeholder="Type or click voice: 'statements', 'margin', or 'churn'..." 
               autocomplete="off"
             >
+            
+            <!-- Animated Voice Waveform (Active when listening) -->
+            <div class="voice-waveform-container" id="voice-waveform" title="Simulated audio streaming waveform">
+              <div class="waveform-bar"></div>
+              <div class="waveform-bar"></div>
+              <div class="waveform-bar"></div>
+              <div class="waveform-bar"></div>
+              <div class="waveform-bar"></div>
+            </div>
+
+            <!-- Voice Input Trigger -->
+            <button type="button" class="voice-input-btn" id="btn-voice-input" title="Simulate Multimodal Voice Input" aria-label="Simulate Multimodal Voice Input">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </button>
+
             <button class="btn btn-glass btn-sm" id="btn-clear-search" style="padding: 2px 8px; font-size: 0.75rem; display: none;">Clear</button>
           </div>
 
@@ -191,6 +219,19 @@
             <button type="button" class="sample-query-pill" data-query="Where are my statements?">"Where are my statements?"</button>
             <button type="button" class="sample-query-pill" data-query="Where did we lose margin?">"Where did we lose margin?"</button>
             <button type="button" class="sample-query-pill" data-query="Which enterprise accounts churned?">"Which accounts churned?"</button>
+          </div>
+
+          <!-- Multimodal Modalities Status Bar -->
+          <div class="multimodal-bar">
+            <div class="multimodal-modalities">
+              <span style="font-weight: 600; color: var(--gray-700);">Multimodal Modalities:</span>
+              <span class="multimodal-pill active" title="Active Intent Search & Direct Surface Routing">💬 Intent Routing</span>
+              <span class="multimodal-pill" id="pill-voice-modality" title="Click to test live voice stream synthesis">🎙️ Voice Stream</span>
+              <span class="multimodal-pill" title="Autonomous Canvas & Adaptive Component Assembly">👁️ Viewport Synthesis</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--primary-blue);">
+              <span>Direct-Action • Zero Conversational Overhead</span>
+            </div>
           </div>
         </div>
 
@@ -600,6 +641,81 @@
           <a href="../" class="btn btn-primary btn-sm">
             <span>Explore Other Articles on Home →</span>
           </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         Community Feedback & Discussion (GitHub Discussions / Giscus)
+         ======================================================== -->
+    <section class="feedback-section" id="community-discussion">
+      <div class="feedback-card">
+        
+        <div class="feedback-header">
+          <div>
+            <div class="feedback-badge">COMMUNITY & INTERACTION</div>
+            <h2 class="feedback-title">Discussion & Issue Tracker</h2>
+            <p class="feedback-subtitle">
+              Have feedback on these AI-native UX patterns, ideas on multimodal voice synthesis, or edge cases to report? Star the repository, open an issue, or join the discussion.
+            </p>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="feedback-action-buttons">
+            <a href="https://github.com/samdeesh/blog-demos" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" title="Star samdeesh/blog-demos on GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.163L12 18.896l-7.333 3.861 1.399-8.163-5.934-5.784 8.2-1.192zm0 5.702l-2.232 4.522-4.991.725 3.612 3.521-.852 4.968L12 17.756l4.463 2.347-.852-4.968 3.612-3.521-4.991-.725L12 6.289z"/>
+              </svg>
+              <span>Star on GitHub</span>
+              <span class="github-star-pill" data-repo="samdeesh/blog-demos">★</span>
+            </a>
+
+            <a href="https://github.com/samdeesh/blog-demos/issues/new?title=%5BFeedback%5D+AI-Native+UX+Demo&labels=feedback,ux&body=%23%23+Feedback+or+Bug+Report%0A%0A**Page:**+AI-Native+UX+Demo%0A**Summary:**+%0A%0A**Expected+Behavior:**%0A%0A**Actual+Behavior:**" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-sm" title="Open an issue on GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>Open an Issue</span>
+            </a>
+
+            <a href="https://github.com/samdeesh/blog-demos/discussions/new?category=general" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-sm" title="Join discussion on GitHub Discussions">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>New Discussion</span>
+            </a>
+
+            <a href="https://github.com/samdeesh/blog-demos/tree/main/ai-native-ux" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-sm" title="View demo source code on GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span>View Source</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Giscus Comments / Discussions Container -->
+        <div class="giscus-wrapper">
+          <div class="giscus"></div>
+          <script src="https://giscus.app/client.js"
+                  data-repo="samdeesh/blog-demos"
+                  data-repo-id="R_kgDOGitExample"
+                  data-category="General"
+                  data-category-id="DIC_kwDOGitExample"
+                  data-mapping="pathname"
+                  data-strict="0"
+                  data-reactions-enabled="1"
+                  data-emit-metadata="0"
+                  data-input-position="top"
+                  data-theme="light"
+                  data-lang="en"
+                  data-loading="lazy"
+                  crossorigin="anonymous"
+                  async>
+          </script>
         </div>
 
       </div>

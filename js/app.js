@@ -129,6 +129,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Multimodal Voice Streaming Simulator
+  const voiceBtn = document.getElementById('btn-voice-input');
+  const voiceWaveform = document.getElementById('voice-waveform');
+  const voicePill = document.getElementById('pill-voice-modality');
+
+  function triggerMultimodalVoiceSimulation() {
+    if (!voiceBtn || voiceBtn.classList.contains('listening')) return;
+
+    voiceBtn.classList.add('listening');
+    if (voiceWaveform) voiceWaveform.classList.add('active');
+    if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.setAttribute('placeholder', 'Streaming multimodal voice transcript...');
+    }
+
+    const spokenQuery = "Where are my treasury statements?";
+    let charIndex = 0;
+
+    // Simulate real-time speech transcription stream
+    const typeInterval = setInterval(() => {
+      if (charIndex < spokenQuery.length) {
+        if (searchInput) searchInput.value = spokenQuery.slice(0, charIndex + 1);
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          voiceBtn.classList.remove('listening');
+          if (voiceWaveform) voiceWaveform.classList.remove('active');
+          if (searchInput) searchInput.setAttribute('placeholder', "Type or click voice: 'statements', 'margin', or 'churn'...");
+          openDirectPage('statements', spokenQuery);
+        }, 350);
+      }
+    }, 40);
+  }
+
+  if (voiceBtn) voiceBtn.addEventListener('click', triggerMultimodalVoiceSimulation);
+  if (voicePill) voicePill.addEventListener('click', triggerMultimodalVoiceSimulation);
+
   // Document click to close autosuggest
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-box-wrapper')) {
@@ -369,5 +408,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ========================================================
+  // GitHub Stars Fetcher with Session Caching
+  // ========================================================
+  function loadGitHubStars() {
+    const starPills = document.querySelectorAll('[data-repo="samdeesh/blog-demos"]');
+    if (!starPills.length) return;
+
+    try {
+      const cachedStars = sessionStorage.getItem('gh_stars_blog_demos');
+      if (cachedStars) {
+        starPills.forEach(pill => { pill.textContent = cachedStars; });
+        return;
+      }
+
+      fetch('https://api.github.com/repos/samdeesh/blog-demos')
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+          if (data && typeof data.stargazers_count === 'number') {
+            const count = data.stargazers_count.toLocaleString();
+            sessionStorage.setItem('gh_stars_blog_demos', count);
+            starPills.forEach(pill => { pill.textContent = count; });
+          }
+        })
+        .catch(() => {
+          // Keep fallback
+        });
+    } catch (e) {
+      // Ignore sessionStorage errors in restricted sandboxes
+    }
+  }
+
+  loadGitHubStars();
+
 });
+
 

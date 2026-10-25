@@ -76,6 +76,29 @@ In the **AI-Native UX** module and related architecture demos:
 
 ---
 
+## 🎙️ Multimodal Modalities & Animated Elements
+
+AI-native UX is fundamentally **multimodal**:
+- **Voice Streaming & Real-Time Audio:** Interfaces accept ambient speech and real-time audio streams, visualized via animated audio waveforms (`.voice-waveform-container`). Spoken intent streams directly into executable surface transitions.
+- **Vision & Viewport Synthesis:** The AI monitors viewport context and generates ephemeral, domain-tailored interactive components rather than conversational text replies.
+- **Animated Tactile Feedback:** Pulse dots, live status pills, skeleton loaders, and interactive state transitions communicate background agent synthesis.
+- Elements that are not part of an in-demo flow should exist as ambient indicators, multimodal status pills, and interactive preview triggers.
+
+---
+
+## 💬 Community Interactivity & Git Comments
+
+For article demo pages:
+- **Header Action Bar:** Interactive GitHub Star button (`.header-github-star`) with dynamic star count fetched asynchronously from `https://api.github.com/repos/samdeesh/blog-demos` and cached in `sessionStorage`.
+- **Discussion & Issue Tracker Section:** Enterprise card at the end of demo modules featuring:
+  - 1-click **Star on GitHub** CTA
+  - Direct **Open an Issue** with prefilled bug/feedback template
+  - Direct **Start a Discussion** link
+  - **View Source** link
+  - **Giscus** (`giscus.app`) zero-server comments widget backed by GitHub Discussions.
+
+---
+
 ## 💻 Tech Stack & Standards
 
 - **HTML5:** Semantic, accessible elements, proper `<nav>`, `<main>`, `<section>`, `<article>`, and `aria-*` tags.
