@@ -65,40 +65,47 @@ async function run() {
   await recordFrame(5, 120);
   await page.screenshot({ path: path.join(OUTPUT_DIR, '04-seats-reclaimed-success.png') });
 
-  // 5. Switch to Tab Level 3: HITL Anomaly & Approve
-  console.log('🛡️ Switching to Level 3 Tab: HITL Anomaly & Approving...');
+  // 5. Switch to Tab Level 3: Interactive HITL Decision Cockpit
+  console.log('🛡️ Switching to Level 3 Tab: Interactive HITL Cockpit...');
   await page.evaluate(() => {
     document.getElementById('tab-btn-level-3').click();
   });
   await wait(400);
   await recordFrame(3, 120);
-  await page.evaluate(() => {
-    document.getElementById('btn-approve-fix').click();
-  });
-  await wait(900);
-  await recordFrame(5, 120);
-  await page.screenshot({ path: path.join(OUTPUT_DIR, '05-hitl-remediation-executed.png') });
 
-  // 6. Switch to Tab Level 4: Autopilot Log & Suggestions
-  console.log('📋 Switching to Level 4 Tab: Autopilot Log & Suggestions...');
-  await page.evaluate(() => {
-    document.getElementById('tab-btn-level-4').click();
-  });
-  await wait(400);
-  await recordFrame(3, 120);
-  // Click Cap at +$150/mo spot instances pill
+  // Click Spot Instance strategy pill
   await page.evaluate(() => {
     const pills = document.querySelectorAll('.approval-option-pill');
     if (pills[1]) pills[1].click();
   });
   await wait(300);
-  await recordFrame(4, 120);
+  await recordFrame(3, 120);
+
+  // Authorize Directive
   await page.evaluate(() => {
-    document.getElementById('btn-submit-approval').click();
+    const authBtn = document.getElementById('btn-hitl-authorize');
+    if (authBtn) authBtn.click();
+  });
+  await wait(950);
+  await recordFrame(5, 120);
+  await page.screenshot({ path: path.join(OUTPUT_DIR, '05-hitl-decision-authorized.png') });
+
+  // 6. Switch to Tab Level 4: Autopilot Operations Log
+  console.log('📋 Switching to Level 4 Tab: Autopilot Operations Log...');
+  await page.evaluate(() => {
+    document.getElementById('tab-btn-level-4').click();
+  });
+  await wait(400);
+  await recordFrame(3, 120);
+
+  // Approve & Execute Fix
+  await page.evaluate(() => {
+    const approveBtn = document.getElementById('btn-approve-fix');
+    if (approveBtn) approveBtn.click();
   });
   await wait(850);
   await recordFrame(6, 120);
-  await page.screenshot({ path: path.join(OUTPUT_DIR, '06-autopilot-directive-approved.png') });
+  await page.screenshot({ path: path.join(OUTPUT_DIR, '06-autopilot-remediation-executed.png') });
 
   await browser.close();
   console.log(`✅ Captured ${frameIdx} frames & all screenshots!`);

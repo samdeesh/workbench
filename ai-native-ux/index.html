@@ -122,7 +122,7 @@
           </p>
         </div>
 
-        <!-- Search Box with Live Autosuggest & Multimodal Voice -->
+        <!-- Search Box with Live Autosuggest -->
         <div class="search-box-wrapper">
           <div class="search-input-container">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -133,29 +133,9 @@
               type="text" 
               id="main-search-input" 
               class="search-input-field" 
-              placeholder="Type or click voice: 'statements', 'margin', or 'churn'..." 
+              placeholder="Search intent: try 'statements', 'margin', or 'churn'..." 
               autocomplete="off"
             >
-            
-            <!-- Animated Voice Waveform (Active when listening) -->
-            <div class="voice-waveform-container" id="voice-waveform" title="Simulated audio streaming waveform">
-              <div class="waveform-bar"></div>
-              <div class="waveform-bar"></div>
-              <div class="waveform-bar"></div>
-              <div class="waveform-bar"></div>
-              <div class="waveform-bar"></div>
-            </div>
-
-            <!-- Voice Input Trigger -->
-            <button type="button" class="voice-input-btn" id="btn-voice-input" title="Simulate Multimodal Voice Input" aria-label="Simulate Multimodal Voice Input">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                <line x1="12" y1="19" x2="12" y2="23"></line>
-                <line x1="8" y1="23" x2="16" y2="23"></line>
-              </svg>
-            </button>
-
             <button class="btn btn-glass btn-sm" id="btn-clear-search" style="padding: 2px 8px; font-size: 0.75rem; display: none;">Clear</button>
           </div>
 
@@ -220,23 +200,26 @@
             <button type="button" class="sample-query-pill" data-query="Where did we lose margin?">"Where did we lose margin?"</button>
             <button type="button" class="sample-query-pill" data-query="Which enterprise accounts churned?">"Which accounts churned?"</button>
           </div>
+        </div>
 
-          <!-- Multimodal Modalities Status Bar -->
-          <div class="multimodal-bar">
-            <div class="multimodal-modalities">
-              <span style="font-weight: 600; color: var(--gray-700);">Multimodal Modalities:</span>
-              <span class="multimodal-pill active" title="Active Intent Search & Direct Surface Routing">💬 Intent Routing</span>
-              <span class="multimodal-pill" id="pill-voice-modality" title="Click to test live voice stream synthesis">🎙️ Voice Stream</span>
-              <span class="multimodal-pill" title="Autonomous Canvas & Adaptive Component Assembly">👁️ Viewport Synthesis</span>
-            </div>
-            <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--primary-blue);">
-              <span>Direct-Action • Zero Conversational Overhead</span>
-            </div>
+        <!-- Empty State Placeholder (Visible before search) -->
+        <div class="direct-landing-empty-state" id="direct-landing-empty" style="text-align: center; padding: 48px 24px; background: var(--gray-50); border: 1px dashed var(--gray-300); border-radius: var(--radius-lg); margin-top: 24px;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gray-200); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--gray-600);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
           </div>
+          <h3 style="font-size: 1.05rem; color: var(--gray-800); margin-bottom: 6px; font-weight: 600;">
+            Direct Intent Surface Awaiting Input
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--gray-500); max-width: 440px; margin: 0 auto; line-height: 1.5;">
+            Type a query or click one of the intent sample pills above to project directly onto an executable surface.
+          </p>
         </div>
 
         <!-- Action Landing Page (Appears on click) -->
-        <div class="direct-landing-card open" id="direct-landing-container" style="margin-top: 24px;">
+        <div class="direct-landing-card" id="direct-landing-container" style="margin-top: 24px; display: none;">
           
           <!-- Skeleton Loader (Mimics loading state) -->
           <div id="landing-skeleton" class="landing-skeleton-loader" style="display: none;">
@@ -246,8 +229,8 @@
             <div class="skeleton-card"></div>
           </div>
 
-          <!-- View A: Statements Page (Default visible) -->
-          <div class="landing-content-panel" id="panel-statements">
+          <!-- View A: Statements Page (Initially hidden, revealed on intent click) -->
+          <div class="landing-content-panel" id="panel-statements" style="display: none;">
             <div class="landing-header">
               <div>
                 <div style="font-size: 0.72rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600;">
@@ -409,7 +392,7 @@
     </section>
 
     <!-- ========================================================
-         PANE 3: Proactive AI & HITL Smart Suggestions (Level 3)
+         PANE 3: Interactive Proactive Governance (Level 3 HITL)
          ======================================================== -->
     <section class="level-tab-pane" id="pane-level-3" aria-labelledby="tab-btn-level-3">
       <div class="demo-section">
@@ -417,53 +400,157 @@
           <div style="font-size: 0.74rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px;">
             LEVEL 3 • PROACTIVE GOVERNANCE
           </div>
-          <h2 class="search-route-title" style="font-size: 1.45rem;">Human-in-the-Loop Governance</h2>
+          <h2 class="search-route-title" style="font-size: 1.45rem;">Interactive Human-in-the-Loop Cockpit</h2>
           <p style="color: var(--gray-600); font-size: 0.92rem;">
-            Background AI flags anomalies before customer impact, synthesizing diagnostic telemetry for rapid human signoff.
+            Agent models infrastructure trade-offs for forecasted surges, synthesizing multi-path decision options, dynamic telemetry simulation, and custom override directives for supervisor signoff.
           </p>
         </div>
 
         <div class="operations-grid" style="grid-template-columns: 1fr;">
-          <!-- Level 3 - Proactive AI with Human-in-the-Loop (HITL) -->
-          <div class="smart-suggestion-card">
+          <!-- Level 3 - Interactive HITL Governance Console -->
+          <div class="hitl-cockpit-card">
             <div class="suggestion-header">
-              <span class="suggestion-pill">
+              <span class="suggestion-pill" style="background: var(--primary-blue-light); color: var(--primary-blue); border-color: var(--primary-blue-border);">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                PROACTIVE GOVERNANCE (LEVEL 3 HITL)
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-500);" id="hitl-confidence-badge">Forecasting Confidence: 99.2%</span>
+            </div>
+
+            <div style="margin-bottom: 18px;">
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--gray-900); margin-bottom: 6px;">
+                PR-402: Auto-scaling worker cluster budget adjustment
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.5;">
+                Forecasting engine projected a 3.8x Q4 traffic surge. Background agents synthesized 3 evaluated remediation paths to safeguard 99.99% availability within corporate budget constraints.
+              </p>
+            </div>
+
+            <!-- Interactive Strategy Selection Pills -->
+            <div style="margin-bottom: 14px;">
+              <div style="font-size: 0.76rem; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                   <line x1="12" y1="17" x2="12.01" y2="17"></line>
                 </svg>
-                PROACTIVE OBSERVATION (LEVEL 3 HITL)
-              </span>
-              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-500);">Confidence: 98%</span>
-            </div>
-
-            <div class="suggestion-body">
-              <div>
-                <h3 style="font-family: var(--font-display); font-size: 1.22rem; color: var(--gray-900); margin-bottom: 6px;">
-                  Anomaly Detected: EU Payment Gateway Latency Spike (+14.8%)
-                </h3>
-                <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.5;">
-                  Detected 12 minutes ago on Frankfurt edge. 3DS authentication timeouts spiking across European issuing banks due to expired certificate handshake.
-                </p>
-
-                <div style="margin-top: 10px; font-size: 0.8rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 500;">
-                  ➔ Suggested Resolution: Reroute 80% EUR volume to secondary processor + auto-refresh token.
-                </div>
+                <span>Select Decision Strategy (Click to evaluate trade-offs):</span>
               </div>
 
-              <div style="text-align: right;">
-                <button type="button" class="btn btn-primary" id="btn-approve-fix" style="width: 100%; padding: 10px 16px;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                  <span>Approve & Execute Fix</span>
+              <div class="suggestion-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="approval-option-pill active" id="hitl-pill-redundancy" data-strategy="redundancy" data-cost="+$320/mo" data-sla="99.99% SLA" data-risk="Minimal Risk" data-nodes="16" data-directive="Approve proposed +$320/mo allocation for full cluster redundancy">
+                  Path A: Full Cluster Redundancy (+$320/mo)
                 </button>
-                <div id="hitl-status-text" style="font-size: 0.75rem; color: var(--gray-500); margin-top: 8px;">
-                  Awaiting human supervisor authorization
+                <button type="button" class="approval-option-pill" id="hitl-pill-spot" data-strategy="spot" data-cost="+$150/mo" data-sla="99.91% SLA" data-risk="Moderate (0.08% spot drain)" data-nodes="12" data-directive="Cap budget at +$150/mo and mandate spot compute instances">
+                  Path B: Spot Instance Mix (+$150/mo)
+                </button>
+                <button type="button" class="approval-option-pill" id="hitl-pill-defer" data-strategy="defer" data-cost="$0/mo" data-sla="Uncertain (>8k RPS)" data-risk="Elevated (P99 latency risk)" data-nodes="8" data-directive="Defer budget increase pending synthetic load test > 8,000 RPS">
+                  Path C: Defer Pending Stress Test ($0/mo)
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Telemetry Simulation Grid -->
+            <div class="hitl-telemetry-grid">
+              <div class="hitl-telemetry-tile highlight" id="tile-cost">
+                <span class="hitl-telemetry-label">Cost Delta</span>
+                <span class="hitl-telemetry-value" id="hitl-metric-cost" style="color: var(--primary-blue);">+$320/mo</span>
+                <span class="hitl-telemetry-sub" id="hitl-sub-cost">100% On-Demand Reserved</span>
+              </div>
+
+              <div class="hitl-telemetry-tile" id="tile-sla">
+                <span class="hitl-telemetry-label">Projected Availability</span>
+                <span class="hitl-telemetry-value" id="hitl-metric-sla" style="color: var(--status-success-text);">99.99% SLA</span>
+                <span class="hitl-telemetry-sub" id="hitl-sub-sla">Zero dropped customer sessions</span>
+              </div>
+
+              <div class="hitl-telemetry-tile" id="tile-risk">
+                <span class="hitl-telemetry-label">Risk Rating</span>
+                <span class="hitl-telemetry-value" id="hitl-metric-risk" style="color: var(--status-success-text); font-size: 1.05rem;">Minimal Risk</span>
+                <span class="hitl-telemetry-sub" id="hitl-sub-risk">Within Q4 surge contingency</span>
+              </div>
+            </div>
+
+            <!-- Interactive Node Capacity Slider -->
+            <div class="hitl-slider-box">
+              <div class="hitl-slider-header">
+                <div>
+                  <strong style="color: var(--gray-900);">Interactive Capacity Tuner:</strong>
+                  <span style="color: var(--gray-500); margin-left: 6px;">Adjust worker node headroom</span>
+                </div>
+                <div style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-blue);" id="hitl-node-display">
+                  16 Worker Nodes (+8 surge buffer)
+                </div>
+              </div>
+              <input type="range" class="hitl-range-input" id="hitl-node-slider" min="8" max="32" step="2" value="16">
+            </div>
+
+            <!-- Policy Diff Viewer Toggle -->
+            <div style="margin-bottom: 12px;">
+              <button type="button" class="btn btn-glass btn-sm" id="btn-toggle-diff" style="font-size: 0.76rem; padding: 4px 10px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <span id="diff-toggle-text">Show Policy Diff Preview</span>
+              </button>
+
+              <div class="hitl-diff-box" id="hitl-diff-view" style="display: none;">
+                <div style="color: #94A3B8; margin-bottom: 6px;"># terraform/clusters/worker-pool.tf (Synthesized Plan)</div>
+                <div id="hitl-diff-content">
+                  <div class="hitl-diff-removed">- min_nodes = 8</div>
+                  <div class="hitl-diff-added">+ min_nodes = 16</div>
+                  <div class="hitl-diff-removed">- max_nodes = 16</div>
+                  <div class="hitl-diff-added">+ max_nodes = 32</div>
+                  <div class="hitl-diff-added">+ instance_type = "c6i.2xlarge" (On-Demand redundancy)</div>
                 </div>
               </div>
             </div>
+
+            <!-- Custom Directive Override & Authorization CTA -->
+            <div style="border-top: 1px solid var(--gray-200); padding-top: 14px;">
+              <div style="font-size: 0.76rem; font-weight: 600; color: var(--gray-700); margin-bottom: 6px;">
+                Executive Directive Instruction (Editable Override):
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 260px;">
+                  <input 
+                    type="text" 
+                    id="hitl-override-input" 
+                    class="approval-input-field" 
+                    value="Approve proposed +$320/mo allocation for full cluster redundancy (16 nodes)" 
+                    placeholder="Enter custom supervisor directive..."
+                  >
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-hitl-authorize" style="white-space: nowrap; padding: 9px 18px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span id="btn-hitl-auth-text">Authorize Directive</span>
+                </button>
+              </div>
+
+              <div id="hitl-auth-status" style="font-size: 0.75rem; color: var(--gray-500); margin-top: 8px;">
+                Awaiting human supervisor authorization • Zero blind automated execution
+              </div>
+
+              <!-- Audit Stamp (Visible upon authorization) -->
+              <div class="hitl-audit-stamp" id="hitl-audit-stamp" style="display: none;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span id="audit-stamp-message">✓ DIRECTIVE AUTHORIZED BY SUPERVISOR • Dispatched to AWS EKS in 340ms</span>
+                </div>
+                <button type="button" class="btn btn-glass btn-sm" id="btn-reset-hitl" style="font-size: 0.72rem; padding: 2px 8px;">
+                  Reset Simulation
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -491,12 +578,11 @@
           </div>
           <h2 class="search-route-title" style="font-size: 1.45rem;">Autopilot Operations Log</h2>
           <p style="color: var(--gray-600); font-size: 0.92rem;">
-            Self-healing business infrastructure running within policy guardrails. Exactly 1 item awaiting human director review with smart recommendation paths and custom override.
+            Self-healing business infrastructure running within policy guardrails. Exactly 1 operational latency anomaly awaiting 1-click execution to restore edge performance.
           </p>
         </div>
 
         <div class="operations-grid" style="grid-template-columns: 1fr;">
-          <!-- Level 3 - Autonomous Autopilot & 1 Awaiting Approval -->
           <div class="activity-card">
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <div>
@@ -504,78 +590,83 @@
                   Foundry Corp System Activity Log
                 </h3>
                 <div style="font-size: 0.78rem; color: var(--gray-500);">
-                  Autonomous actions running continuously within guardrails. 1 item awaiting review.
+                  Autonomous actions running continuously within guardrails. 1 item awaiting remediation signoff.
                 </div>
               </div>
               <span class="activity-tag tag-auto">Autopilot Active</span>
             </div>
 
-            <!-- Exactly ~5 Items + 1 Awaiting Approval -->
+            <!-- Exactly ~5 Items with Item 1 Awaiting 1-Click Remediation -->
             <div class="activity-list" id="activity-log-items">
               
-              <!-- Item 1: AWAITING APPROVAL with Smart Suggestions & Custom Override Input -->
+              <!-- Item 1: AWAITING APPROVAL: EU Payment Gateway Latency Spike -->
               <div class="activity-item awaiting-approval" id="item-pending-approval" style="flex-direction: column; align-items: stretch; gap: 14px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;">
-                  <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; width: 100%; flex-wrap: wrap;">
+                  <div style="display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 280px;">
                     <span class="activity-tag tag-pending" id="tag-pending-badge">AWAITING APPROVAL</span>
                     <div>
-                      <strong style="color: var(--gray-900);" id="text-pending-title">PR-402: Auto-scaling worker cluster budget adjustment</strong>
-                      <div style="font-size: 0.75rem; color: var(--gray-500);" id="text-pending-sub">
-                        Estimated +$320/mo cost increase to absorb forecasted Q4 traffic surge.
+                      <strong style="color: var(--gray-900); font-size: 0.92rem;" id="text-pending-title">
+                        Anomaly Detected: EU Payment Gateway Latency Spike (+14.8%)
+                      </strong>
+                      <div style="font-size: 0.76rem; color: var(--gray-600); margin-top: 2px;" id="text-pending-sub">
+                        Detected 12 minutes ago on Frankfurt edge. 3DS authentication timeouts spiking across European issuing banks due to expired certificate handshake.
+                      </div>
+                      <div style="margin-top: 8px; font-size: 0.78rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 500;" id="text-pending-resolution">
+                        ➔ Auto-Remediation Ready: Reroute 80% EUR volume to secondary processor + auto-refresh token handshake.
                       </div>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary btn-sm" id="btn-toggle-drawer">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
-                    <span id="btn-toggle-text">Review Options</span>
-                  </button>
+
+                  <div style="text-align: right; min-width: 260px; display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+                    <div style="display: flex; gap: 8px; align-items: center; width: 100%; justify-content: flex-end; flex-wrap: wrap;">
+                      <button type="button" class="btn btn-glass btn-sm" id="btn-revise-fix" style="padding: 9px 12px; font-size: 0.78rem; white-space: nowrap;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span>Reject / Revise</span>
+                      </button>
+
+                      <button type="button" class="btn btn-primary" id="btn-approve-fix" style="padding: 9px 16px; white-space: nowrap;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span id="btn-approve-fix-text">Approve & Execute Fix</span>
+                      </button>
+                    </div>
+
+                    <div id="hitl-status-text" style="font-size: 0.74rem; color: var(--gray-500);">
+                      Awaiting supervisor signoff
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Interactive Suggestions & Override Drawer -->
-                <div class="approval-drawer" id="approval-drawer" style="border-top: 1px solid var(--gray-200); padding-top: 12px;">
-                  <div style="font-size: 0.76rem; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Revision Drawer (Asks what do you want to do in a text input) -->
+                <div id="remediation-revise-drawer" style="display: none; border-top: 1px solid var(--gray-200); padding-top: 12px; margin-top: 4px;">
+                  <div style="font-size: 0.78rem; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
                     </svg>
-                    <span>Recommended Decision Paths:</span>
+                    <span>What do you want to do instead?</span>
                   </div>
-
-                  <!-- Suggested Quick Action Pills -->
-                  <div class="suggestion-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-                    <button type="button" class="approval-option-pill active" data-directive="Approve proposed +$320/mo allocation for full cluster redundancy">
-                      Approve Proposed (+$320/mo)
-                    </button>
-                    <button type="button" class="approval-option-pill" data-directive="Cap budget at +$150/mo and mandate spot compute instances">
-                      Cap at +$150/mo with Spot Instances
-                    </button>
-                    <button type="button" class="approval-option-pill" data-directive="Defer budget increase pending synthetic load test > 8,000 RPS">
-                      Defer Pending Stress Test
-                    </button>
-                  </div>
-
-                  <!-- Custom Override Text Input -->
-                  <div style="display: flex; gap: 8px; align-items: center;">
-                    <div style="flex: 1;">
+                  
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 260px;">
                       <input 
                         type="text" 
-                        id="approval-override-input" 
+                        id="revise-fix-input" 
                         class="approval-input-field" 
-                        value="Approve proposed +$320/mo allocation for full cluster redundancy" 
-                        placeholder="Or enter custom override directive..."
+                        placeholder="e.g. Hold traffic on primary, force certificate rollover via ACME..." 
+                        value="Hold traffic on primary, force immediate certificate rollover via ACME"
                       >
                     </div>
-                    <button type="button" class="btn btn-primary btn-sm" id="btn-submit-approval" style="white-space: nowrap;">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      <span>Authorize Directive</span>
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-submit-revision" style="white-space: nowrap; padding: 7px 14px;">
+                      <span>Apply Revision</span>
+                    </button>
+                    <button type="button" class="btn btn-glass btn-sm" id="btn-cancel-revision" style="white-space: nowrap; padding: 7px 12px;">
+                      <span>Cancel</span>
                     </button>
                   </div>
                 </div>

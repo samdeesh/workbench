@@ -4,11 +4,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================
-  // 1. Direct-Action Intent Search & Dynamic Panels
+  // 1. Direct-Action Intent Search & Dynamic Panels (Level 2)
   // ========================================================
   const searchInput = document.getElementById('main-search-input');
   const autosuggestMenu = document.getElementById('autosuggest-menu');
   const clearSearchBtn = document.getElementById('btn-clear-search');
+  const emptyState = document.getElementById('direct-landing-empty');
   const landingCard = document.getElementById('direct-landing-container');
   const skeletonLoader = document.getElementById('landing-skeleton');
   const samplePills = document.querySelectorAll('.sample-query-pill');
@@ -31,6 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function openDirectPage(actionKey, queryText) {
     hideAutosuggest();
     if (searchInput) searchInput.value = queryText || searchInput.value;
+    if (clearSearchBtn) clearSearchBtn.style.display = 'inline-flex';
+
+    // Hide empty state and show the direct-action landing card
+    if (emptyState) emptyState.style.display = 'none';
+    if (landingCard) {
+      landingCard.style.display = 'block';
+      landingCard.classList.add('open');
+    }
 
     // Show simulated quick skeleton loading animation for tactile AI retrieval feel
     if (skeletonLoader) {
@@ -92,9 +101,24 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('focus', () => {
       if (searchInput.value.trim().length > 0) showAutosuggest();
     });
+
+    // Enter key directly renders matching surface
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = searchInput.value.trim().toLowerCase();
+        let targetAction = 'statements';
+        if (val.includes('seat') || val.includes('marg') || val.includes('license') || val.includes('loss')) {
+          targetAction = 'revenue';
+        } else if (val.includes('churn') || val.includes('account')) {
+          targetAction = 'churn';
+        }
+        openDirectPage(targetAction, searchInput.value);
+      }
+    });
   }
 
-  // Click on Autosuggest Item
+  // Click on Autosuggest Item renders the corresponding section
   document.querySelectorAll('.autosuggest-item').forEach(item => {
     item.addEventListener('click', () => {
       const action = item.dataset.action;
@@ -103,70 +127,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Sample Query Pills
+  // Sample Query Pills render corresponding section
   samplePills.forEach(pill => {
     pill.addEventListener('click', () => {
       const query = pill.dataset.query;
       if (searchInput) searchInput.value = query;
-      showAutosuggest();
 
       if (query.includes('statements')) {
         openDirectPage('statements', query);
       } else if (query.includes('margin') || query.includes('seats')) {
         openDirectPage('revenue', query);
-      } else if (query.includes('churn')) {
+      } else if (query.includes('churn') || query.includes('accounts')) {
         openDirectPage('churn', query);
       }
     });
   });
 
-  // Clear button
+  // Clear button resets to empty state
   if (clearSearchBtn) {
     clearSearchBtn.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
       hideAutosuggest();
       clearSearchBtn.style.display = 'none';
+      if (emptyState) emptyState.style.display = 'block';
+      if (landingCard) {
+        landingCard.style.display = 'none';
+        landingCard.classList.remove('open');
+      }
+      Object.keys(panels).forEach(key => {
+        if (panels[key]) panels[key].style.display = 'none';
+      });
     });
   }
-
-  // Multimodal Voice Streaming Simulator
-  const voiceBtn = document.getElementById('btn-voice-input');
-  const voiceWaveform = document.getElementById('voice-waveform');
-  const voicePill = document.getElementById('pill-voice-modality');
-
-  function triggerMultimodalVoiceSimulation() {
-    if (!voiceBtn || voiceBtn.classList.contains('listening')) return;
-
-    voiceBtn.classList.add('listening');
-    if (voiceWaveform) voiceWaveform.classList.add('active');
-    if (clearSearchBtn) clearSearchBtn.style.display = 'none';
-    if (searchInput) {
-      searchInput.value = '';
-      searchInput.setAttribute('placeholder', 'Streaming multimodal voice transcript...');
-    }
-
-    const spokenQuery = "Where are my treasury statements?";
-    let charIndex = 0;
-
-    // Simulate real-time speech transcription stream
-    const typeInterval = setInterval(() => {
-      if (charIndex < spokenQuery.length) {
-        if (searchInput) searchInput.value = spokenQuery.slice(0, charIndex + 1);
-        charIndex++;
-      } else {
-        clearInterval(typeInterval);
-        setTimeout(() => {
-          voiceBtn.classList.remove('listening');
-          if (voiceWaveform) voiceWaveform.classList.remove('active');
-          if (searchInput) searchInput.setAttribute('placeholder', "Type or click voice: 'statements', 'margin', or 'churn'...");
-          openDirectPage('statements', spokenQuery);
-        }, 350);
-      }
-    }, 40);
-  }
-
-  if (voiceBtn) voiceBtn.addEventListener('click', triggerMultimodalVoiceSimulation);
-  if (voicePill) voicePill.addEventListener('click', triggerMultimodalVoiceSimulation);
 
   // Document click to close autosuggest
   document.addEventListener('click', (e) => {
@@ -257,15 +249,291 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
   // ========================================================
-  // 2. Proactive AI with Human-in-the-Loop (Level 2 HITL)
+  // 2. Interactive Proactive Governance (Level 3 HITL Cockpit)
+  // ========================================================
+  const hitlPills = document.querySelectorAll('.approval-option-pill');
+  const hitlOverrideInput = document.getElementById('hitl-override-input');
+  const hitlNodeSlider = document.getElementById('hitl-node-slider');
+  const hitlNodeDisplay = document.getElementById('hitl-node-display');
+  const metricCost = document.getElementById('hitl-metric-cost');
+  const subCost = document.getElementById('hitl-sub-cost');
+  const metricSla = document.getElementById('hitl-metric-sla');
+  const subSla = document.getElementById('hitl-sub-sla');
+  const metricRisk = document.getElementById('hitl-metric-risk');
+  const subRisk = document.getElementById('hitl-sub-risk');
+  const hitlConfidenceBadge = document.getElementById('hitl-confidence-badge');
+  const btnToggleDiff = document.getElementById('btn-toggle-diff');
+  const diffToggleText = document.getElementById('diff-toggle-text');
+  const hitlDiffView = document.getElementById('hitl-diff-view');
+  const hitlDiffContent = document.getElementById('hitl-diff-content');
+  const btnHitlAuthorize = document.getElementById('btn-hitl-authorize');
+  const btnHitlAuthText = document.getElementById('btn-hitl-auth-text');
+  const hitlAuthStatus = document.getElementById('hitl-auth-status');
+  const hitlAuditStamp = document.getElementById('hitl-audit-stamp');
+  const auditStampMessage = document.getElementById('audit-stamp-message');
+  const btnResetHitl = document.getElementById('btn-reset-hitl');
+
+  const strategyPresets = {
+    redundancy: {
+      cost: '+$320/mo',
+      costSub: '100% On-Demand Reserved',
+      sla: '99.99% SLA',
+      slaSub: 'Zero dropped customer sessions',
+      risk: 'Minimal Risk',
+      riskSub: 'Within Q4 surge contingency',
+      nodes: 16,
+      confidence: 'Forecasting Confidence: 99.2%',
+      directive: 'Approve proposed +$320/mo allocation for full cluster redundancy (16 nodes)',
+      diff: `
+        <div class="hitl-diff-removed">- min_nodes = 8</div>
+        <div class="hitl-diff-added">+ min_nodes = 16</div>
+        <div class="hitl-diff-removed">- max_nodes = 16</div>
+        <div class="hitl-diff-added">+ max_nodes = 32</div>
+        <div class="hitl-diff-added">+ instance_type = "c6i.2xlarge" (On-Demand redundancy)</div>
+      `
+    },
+    spot: {
+      cost: '+$150/mo',
+      costSub: '53% Cost Reduction vs Full',
+      sla: '99.91% SLA',
+      slaSub: '0.08% spot drain interruption risk',
+      risk: 'Moderate Risk',
+      riskSub: 'Spot reclamation fallback configured',
+      nodes: 12,
+      confidence: 'Forecasting Confidence: 94.6%',
+      directive: 'Cap budget at +$150/mo and mandate spot compute instances (12 nodes)',
+      diff: `
+        <div class="hitl-diff-removed">- min_nodes = 8</div>
+        <div class="hitl-diff-added">+ min_nodes = 12</div>
+        <div class="hitl-diff-added">+ spot_allocation_strategy = "capacity-optimized-prioritized"</div>
+        <div class="hitl-diff-added">+ on_demand_base_capacity = 4</div>
+        <div class="hitl-diff-added">+ spot_ratio = 0.70</div>
+      `
+    },
+    defer: {
+      cost: '$0/mo',
+      costSub: 'Hold current quarterly allocation',
+      sla: 'Uncertain (>8k RPS)',
+      slaSub: 'Potential P99 latency throttling',
+      risk: 'Elevated Risk',
+      riskSub: 'Synthetic load test threshold required',
+      nodes: 8,
+      confidence: 'Forecasting Confidence: 78.4%',
+      directive: 'Defer budget increase pending synthetic load test > 8,000 RPS (8 nodes)',
+      diff: `
+        <div class="hitl-diff-added">+ trigger_synthetic_load_test = true</div>
+        <div class="hitl-diff-added">+ load_test_threshold_rps = 8000</div>
+        <div class="hitl-diff-added">+ alert_pagerduty_on_drop = true</div>
+      `
+    }
+  };
+
+  // Switch Strategy Pills
+  hitlPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      hitlPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const strategyKey = pill.dataset.strategy || 'redundancy';
+      const preset = strategyPresets[strategyKey];
+      if (!preset) return;
+
+      if (metricCost) metricCost.textContent = preset.cost;
+      if (subCost) subCost.textContent = preset.costSub;
+      if (metricSla) metricSla.textContent = preset.sla;
+      if (subSla) subSla.textContent = preset.slaSub;
+      if (metricRisk) metricRisk.textContent = preset.risk;
+      if (subRisk) subRisk.textContent = preset.riskSub;
+      if (hitlConfidenceBadge) hitlConfidenceBadge.textContent = preset.confidence;
+
+      if (hitlNodeSlider) hitlNodeSlider.value = preset.nodes;
+      if (hitlNodeDisplay) hitlNodeDisplay.textContent = `${preset.nodes} Worker Nodes (+${preset.nodes - 8} surge buffer)`;
+      if (hitlDiffContent) hitlDiffContent.innerHTML = preset.diff;
+      if (hitlOverrideInput) hitlOverrideInput.value = preset.directive;
+    });
+  });
+
+  // Slider interactive tuning
+  if (hitlNodeSlider) {
+    hitlNodeSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      const addedNodes = Math.max(0, val - 8);
+      const dynamicCost = addedNodes * 40;
+
+      if (hitlNodeDisplay) {
+        hitlNodeDisplay.textContent = `${val} Worker Nodes (+${addedNodes} surge buffer)`;
+      }
+
+      if (metricCost) {
+        metricCost.textContent = `+$${dynamicCost}/mo`;
+      }
+      if (subCost) {
+        subCost.textContent = `Dynamically scaled for ${val} nodes`;
+      }
+
+      if (hitlOverrideInput) {
+        hitlOverrideInput.value = `Approve custom +$${dynamicCost}/mo allocation for ${val} worker nodes`;
+      }
+    });
+  }
+
+  // Toggle Policy Diff Viewer
+  if (btnToggleDiff && hitlDiffView) {
+    btnToggleDiff.addEventListener('click', () => {
+      const isVisible = hitlDiffView.style.display === 'block';
+      hitlDiffView.style.display = isVisible ? 'none' : 'block';
+      if (diffToggleText) {
+        diffToggleText.textContent = isVisible ? 'Show Policy Diff Preview' : 'Hide Policy Diff Preview';
+      }
+    });
+  }
+
+  // Authorize Directive with 2-Phase Progress State
+  if (btnHitlAuthorize) {
+    btnHitlAuthorize.addEventListener('click', () => {
+      const directive = hitlOverrideInput ? hitlOverrideInput.value.trim() : 'Approved proposed limit';
+      if (!directive) return;
+
+      btnHitlAuthorize.disabled = true;
+      if (btnHitlAuthText) btnHitlAuthText.textContent = '1/2: Signing supervisor token...';
+      if (hitlAuthStatus) hitlAuthStatus.textContent = 'Validating IAM administrative credentials...';
+
+      setTimeout(() => {
+        if (btnHitlAuthText) btnHitlAuthText.textContent = '2/2: Applying Terraform plan to us-east-1...';
+
+        setTimeout(() => {
+          btnHitlAuthorize.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Directive Authorized</span>
+          `;
+          btnHitlAuthorize.classList.add('btn-success-state');
+
+          if (hitlAuthStatus) {
+            hitlAuthStatus.innerHTML = '<span style="color: var(--status-success-text); font-weight: 600;">Directive successfully registered and enforced in cluster state</span>';
+          }
+
+          if (hitlAuditStamp) {
+            hitlAuditStamp.style.display = 'flex';
+          }
+          if (auditStampMessage) {
+            auditStampMessage.textContent = `✓ DIRECTIVE AUTHORIZED BY SUPERVISOR: "${directive}" • Dispatched in 340ms`;
+          }
+        }, 450);
+      }, 400);
+    });
+  }
+
+  // Reset Simulation Button
+  if (btnResetHitl) {
+    btnResetHitl.addEventListener('click', () => {
+      if (btnHitlAuthorize) {
+        btnHitlAuthorize.disabled = false;
+        btnHitlAuthorize.classList.remove('btn-success-state');
+        btnHitlAuthorize.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span id="btn-hitl-auth-text">Authorize Directive</span>
+        `;
+      }
+      if (hitlAuthStatus) {
+        hitlAuthStatus.textContent = 'Awaiting human supervisor authorization • Zero blind automated execution';
+      }
+      if (hitlAuditStamp) {
+        hitlAuditStamp.style.display = 'none';
+      }
+    });
+  }
+
+  // ========================================================
+  // 3. Level 4 Autopilot Operations Log: 1-Click Remediation & Revise
   // ========================================================
   const approveFixBtn = document.getElementById('btn-approve-fix');
+  const btnReviseFix = document.getElementById('btn-revise-fix');
+  const reviseDrawer = document.getElementById('remediation-revise-drawer');
+  const reviseInput = document.getElementById('revise-fix-input');
+  const btnSubmitRevision = document.getElementById('btn-submit-revision');
+  const btnCancelRevision = document.getElementById('btn-cancel-revision');
   const hitlStatusText = document.getElementById('hitl-status-text');
+  const pendingBadge = document.getElementById('tag-pending-badge');
+  const pendingItem = document.getElementById('item-pending-approval');
+  const resolutionNote = document.getElementById('text-pending-resolution');
 
+  // Toggle Revise / Reject Drawer
+  if (btnReviseFix && reviseDrawer) {
+    btnReviseFix.addEventListener('click', () => {
+      const isVisible = reviseDrawer.style.display === 'block';
+      reviseDrawer.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible && reviseInput) {
+        reviseInput.focus();
+        reviseInput.select();
+      }
+    });
+  }
+
+  // Cancel Revision
+  if (btnCancelRevision && reviseDrawer) {
+    btnCancelRevision.addEventListener('click', () => {
+      reviseDrawer.style.display = 'none';
+    });
+  }
+
+  // Submit Custom Revision Directive
+  if (btnSubmitRevision && reviseInput) {
+    btnSubmitRevision.addEventListener('click', () => {
+      const customAction = reviseInput.value.trim() || 'Hold traffic on primary, force certificate rollover';
+      btnSubmitRevision.disabled = true;
+      btnSubmitRevision.innerHTML = '<span class="theme-spinner"></span> <span>Applying Custom Directive...</span>';
+
+      setTimeout(() => {
+        if (reviseDrawer) reviseDrawer.style.display = 'none';
+
+        if (approveFixBtn) approveFixBtn.style.display = 'none';
+        if (btnReviseFix) {
+          btnReviseFix.disabled = true;
+          btnReviseFix.innerHTML = `
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Revision Enforced</span>
+          `;
+          btnReviseFix.classList.add('btn-success-state');
+        }
+
+        if (pendingBadge) {
+          pendingBadge.textContent = 'REVISED DIRECTIVE';
+          pendingBadge.className = 'activity-tag tag-resolved';
+        }
+
+        if (pendingItem) {
+          pendingItem.classList.remove('awaiting-approval');
+          pendingItem.style.background = '#FFFFFF';
+          pendingItem.style.borderColor = 'var(--status-success-border)';
+        }
+
+        if (resolutionNote) {
+          resolutionNote.innerHTML = `➔ <strong>Custom Override Enforced:</strong> ${customAction}`;
+          resolutionNote.style.color = 'var(--gray-800)';
+        }
+
+        if (hitlStatusText) {
+          hitlStatusText.innerHTML = '<span style="color: var(--status-success-text); font-weight: 600;">Supervisor custom directive dispatched to Frankfurt edge (24ms)</span>';
+        }
+      }, 650);
+    });
+  }
+
+  // 1-Click Approve & Execute Fix
   if (approveFixBtn) {
     approveFixBtn.addEventListener('click', () => {
       approveFixBtn.disabled = true;
+      if (btnReviseFix) btnReviseFix.style.display = 'none';
+      if (reviseDrawer) reviseDrawer.style.display = 'none';
+
       approveFixBtn.innerHTML = '<span class="theme-spinner"></span> <span>Executing Remediation on Edge...</span>';
       if (hitlStatusText) hitlStatusText.textContent = 'Rerouting EUR checkout gateway & rotating token handshake...';
 
@@ -278,70 +546,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         approveFixBtn.classList.add('btn-success-state');
 
-        if (hitlStatusText) {
-          hitlStatusText.innerHTML = '<span style="color: var(--status-success-text); font-weight: 600;">Authorized by Supervisor • Edge latency normalized (18ms)</span>';
-        }
-      }, 750);
-    });
-  }
-
-  // ========================================================
-  // 3. Level 3 Activity Log: Smart Suggestions & Override
-  // ========================================================
-  const toggleDrawerBtn = document.getElementById('btn-toggle-drawer');
-  const approvalDrawer = document.getElementById('approval-drawer');
-  const optionPills = document.querySelectorAll('.approval-option-pill');
-  const overrideInput = document.getElementById('approval-override-input');
-  const submitApprovalBtn = document.getElementById('btn-submit-approval');
-  const pendingBadge = document.getElementById('tag-pending-badge');
-  const pendingItem = document.getElementById('item-pending-approval');
-  const pendingTitle = document.getElementById('text-pending-title');
-  const pendingSub = document.getElementById('text-pending-sub');
-
-  // Toggle drawer visibility if needed
-  if (toggleDrawerBtn && approvalDrawer) {
-    toggleDrawerBtn.addEventListener('click', () => {
-      const isHidden = approvalDrawer.style.display === 'none';
-      approvalDrawer.style.display = isHidden ? 'block' : 'none';
-      const textSpan = document.getElementById('btn-toggle-text');
-      if (textSpan) textSpan.textContent = isHidden ? 'Hide Options' : 'Review Options';
-    });
-  }
-
-  // Clicking an AI Suggestion pill auto-fills the custom override input
-  optionPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      optionPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const directive = pill.dataset.directive;
-      if (overrideInput && directive) {
-        overrideInput.value = directive;
-        overrideInput.focus();
-      }
-    });
-  });
-
-  // Authorize Directive with Loading Spinner
-  if (submitApprovalBtn) {
-    submitApprovalBtn.addEventListener('click', () => {
-      const directiveText = overrideInput ? overrideInput.value.trim() : 'Approved proposed limit';
-      if (!directiveText) return;
-
-      submitApprovalBtn.disabled = true;
-      submitApprovalBtn.innerHTML = '<span class="theme-spinner"></span> <span>Applying Directive...</span>';
-
-      setTimeout(() => {
-        submitApprovalBtn.innerHTML = `
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span>Directive Applied</span>
-        `;
-        submitApprovalBtn.classList.add('btn-success-state');
-
         if (pendingBadge) {
-          pendingBadge.textContent = 'POLICY ACTIVE';
-          pendingBadge.className = 'activity-tag tag-auto';
+          pendingBadge.textContent = 'RESOLVED';
+          pendingBadge.className = 'activity-tag tag-resolved';
         }
 
         if (pendingItem) {
@@ -350,16 +557,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pendingItem.style.borderColor = 'var(--status-success-border)';
         }
 
-        if (pendingTitle) {
-          pendingTitle.textContent = 'PR-402: Auto-scaling cluster policy enforced';
-        }
-
-        if (pendingSub) {
-          pendingSub.textContent = `Applied Directive: "${directiveText}" • Authorized by Supervisor`;
-        }
-
-        if (toggleDrawerBtn) {
-          toggleDrawerBtn.style.display = 'none';
+        if (hitlStatusText) {
+          hitlStatusText.innerHTML = '<span style="color: var(--status-success-text); font-weight: 600;">Authorized by Supervisor • Edge latency normalized (18ms)</span>';
         }
       }, 700);
     });
