@@ -1,6 +1,6 @@
 # 🤖 AGENTS.md — Repository Instructions & Guidelines for AI Agents
 
-Welcome to the **Foundry.blog Interactive Demos** repository (`blog-demos`). This document defines the architectural patterns, styling conventions, branding rules, and development workflows for AI agents contributing to this codebase.
+Welcome to the **Foundry.blog Workbench** repository (`workbench`). This document defines the architectural patterns, styling conventions, branding rules, and development workflows for AI agents contributing to this codebase.
 
 ---
 
@@ -89,7 +89,7 @@ AI-native UX is fundamentally **multimodal**:
 ## 💬 Community Interactivity & Git Comments
 
 For article demo pages:
-- **Header Action Bar:** Interactive GitHub Star button (`.header-github-star`) with dynamic star count fetched asynchronously from `https://api.github.com/repos/samdeesh/blog-demos` and cached in `sessionStorage`.
+- **Header Action Bar:** Interactive GitHub Star button (`.header-github-star`) with dynamic star count fetched asynchronously from `https://api.github.com/repos/samdeesh/workbench` and cached in `sessionStorage`.
 - **Discussion & Issue Tracker Section:** Enterprise card at the end of demo modules featuring:
   - 1-click **Star on GitHub** CTA
   - Direct **Open an Issue** with prefilled bug/feedback template

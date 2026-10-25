@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Foundry.blog • Interactive Demos</title>
-  <meta name="description" content="Interactive companion demonstrations and blueprints for articles published on Foundry.blog.">
+  <title>Foundry.blog Workbench • Interactive Demos</title>
+  <meta name="description" content="Interactive engineering workbench of companion demonstrations and blueprints for articles published on Foundry.blog.">
   <link rel="canonical" href="https://foundry.blog/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Foundry.blog • Interactive Demos">
-  <meta property="og:description" content="Interactive companion demonstrations and blueprints for articles published on Foundry.blog.">
+  <meta property="og:title" content="Foundry.blog Workbench • Interactive Demos">
+  <meta property="og:description" content="Interactive engineering workbench of companion demonstrations and blueprints for articles published on Foundry.blog.">
   <meta property="og:url" content="https://foundry.blog/">
 
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
@@ -43,8 +43,16 @@
         </nav>
       </div>
 
-      <!-- Clean Professional Header Link to Blog -->
-      <div style="display: flex; align-items: center; gap: 14px;">
+      <!-- Clean Professional Header Link to Blog & GitHub Stars -->
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="https://github.com/samdeesh/workbench" target="_blank" rel="noopener noreferrer" class="header-github-star" title="Star samdeesh/workbench on GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.163L12 18.896l-7.333 3.861 1.399-8.163-5.934-5.784 8.2-1.192zm0 5.702l-2.232 4.522-4.991.725 3.612 3.521-.852 4.968L12 17.756l4.463 2.347-.852-4.968 3.612-3.521-4.991-.725L12 6.289z"/>
+          </svg>
+          <span>Star</span>
+          <span class="github-star-count" data-repo="samdeesh/workbench">★</span>
+        </a>
+
         <a href="https://foundry.blog/" target="_blank" rel="noopener noreferrer" class="header-blog-link" title="Visit Foundry.blog">
           <span>Foundry.blog</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -62,15 +70,15 @@
     <!-- Hero Header -->
     <section class="home-hero" style="margin-bottom: 0;">
       <div class="home-badge">
-        <span>INTERACTIVE DEMOS & BLUEPRINTS</span>
+        <span>INTERACTIVE WORKBENCH</span>
         <span>•</span>
         <span>FOUNDRY.BLOG</span>
       </div>
       <h1 class="home-title" style="font-size: 2.5rem; margin-bottom: 14px; letter-spacing: -0.02em;">
-        Foundry.blog Interactive Demos
+        Foundry.blog Workbench
       </h1>
       <p class="home-desc" style="max-width: 760px; margin: 0 auto 24px auto; font-size: 1.05rem; line-height: 1.65;">
-        Companion interactive demonstrations for articles published on <a href="https://foundry.blog/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">Foundry.blog</a>. Touch, test, and evaluate modern software and AI paradigms directly in your browser with zero server dependencies.
+        Interactive engineering workbench of companion demonstrations and architectural blueprints for articles published on <a href="https://foundry.blog/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">Foundry.blog</a>. Touch, test, and evaluate modern software and AI paradigms directly in your browser with zero server dependencies.
       </p>
       <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
         <a href="#articles" class="btn btn-primary">
@@ -196,7 +204,7 @@
   <footer class="site-footer">
     <div class="container">
       <div>
-        Interactive Demonstrations & Blueprints • <a href="https://foundry.blog/" class="footer-link">Foundry.blog</a>
+        Foundry.blog Workbench • <a href="https://foundry.blog/" class="footer-link">Foundry.blog</a>
       </div>
       <div style="margin-top: 4px;">
         <a href="https://foundry.blog/" class="footer-link" style="font-size: 0.8rem;">foundry.blog ↗</a>
@@ -204,5 +212,6 @@
     </div>
   </footer>
 
+  <script type="module" src="./js/app.js"></script>
 </body>
 </html>

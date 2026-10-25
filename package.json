@@ -1,7 +1,7 @@
 {
-  "name": "blog-demos",
+  "name": "workbench",
   "version": "1.0.0",
-  "description": "Interactive companion demos and blueprints for articles published on Foundry.blog",
+  "description": "Interactive workbench of companion demos and blueprints for articles published on Foundry.blog",
   "homepage": "https://foundry.blog/",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "keywords": [
-    "blog-demos",
+    "workbench",
+    "foundry-blog",
     "interactive-demo",
     "ai-native-ux",
     "generative-ui",

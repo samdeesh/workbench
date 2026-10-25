@@ -412,22 +412,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // GitHub Stars Fetcher with Session Caching
   // ========================================================
   function loadGitHubStars() {
-    const starPills = document.querySelectorAll('[data-repo="samdeesh/blog-demos"]');
+    const starPills = document.querySelectorAll('[data-repo="samdeesh/workbench"]');
     if (!starPills.length) return;
 
     try {
-      const cachedStars = sessionStorage.getItem('gh_stars_blog_demos');
+      const cachedStars = sessionStorage.getItem('gh_stars_workbench');
       if (cachedStars) {
         starPills.forEach(pill => { pill.textContent = cachedStars; });
         return;
       }
 
-      fetch('https://api.github.com/repos/samdeesh/blog-demos')
+      fetch('https://api.github.com/repos/samdeesh/workbench')
         .then(res => res.ok ? res.json() : null)
         .then(data => {
           if (data && typeof data.stargazers_count === 'number') {
             const count = data.stargazers_count.toLocaleString();
-            sessionStorage.setItem('gh_stars_blog_demos', count);
+            sessionStorage.setItem('gh_stars_workbench', count);
             starPills.forEach(pill => { pill.textContent = count; });
           }
         })

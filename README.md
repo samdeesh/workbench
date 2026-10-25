@@ -1,10 +1,10 @@
-# 🚀 Foundry.blog: Interactive Demonstrations
+# 🛠️ Foundry.blog Workbench
 
-[![Static Hosting](https://img.shields.io/badge/Hosting-GitHub%20Pages-blue?logo=github)](https://samdeesh.github.io/blog-demos/)
+[![Static Hosting](https://img.shields.io/badge/Hosting-GitHub%20Pages-blue?logo=github)](https://samdeesh.github.io/workbench/)
 [![Blog](https://img.shields.io/badge/Blog-Foundry.blog-purple)](https://foundry.blog/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](https://opensource.org/licenses/MIT)
 
-Interactive companion repository hosting live engineering demonstrations and architectural blueprints for articles published on [Foundry.blog](https://foundry.blog/).
+Interactive workbench repository hosting live engineering demonstrations and architectural blueprints for articles published on [Foundry.blog](https://foundry.blog/).
 
 Zero server dependencies. Hosted statically on GitHub Pages.
 
