@@ -60,6 +60,7 @@ The repository uses a multi-page static directory structure:
 - **Dedicated Demo Routes (`/<slug>/index.html`):** Each interactive demo lives in its own subdirectory (e.g. `/ai-native-ux/`, and upcoming `/generative-ui/`, `/ambient-agents/`).
 - **Relative Linking:** Use relative paths (`./`, `../`) so GitHub Pages serves cleanly from any subpath.
 - **Vite Multi-Page Config:** Whenever adding a new module, register its HTML entry point in `vite.config.js` under `build.rollupOptions.input`.
+- **Architectural Evolution Note:** The current structure represents Phase 1 (pragmatic foundation for the initial AI-Native UX demo). Refer to [docs/architecture-and-modularity-roadmap.md](file:///Users/samdeesh/Projects/github/docs/architecture-and-modularity-roadmap.md) for the planned modular decoupling (ES module splitting, scoped CSS, and GitHub Actions CI/CD) to be adopted in subsequent demos.
 
 ---
 
