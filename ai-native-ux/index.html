@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AI-Native UX • Foundry.blog Demo</title>
+  <meta name="description" content="Interactive companion demo for the Foundry.blog article 'AI-Native UX: Beyond the Chat Box'.">
+  <link rel="canonical" href="https://foundry.blog/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI-Native UX • Foundry.blog Demo">
+  <meta property="og:description" content="Interactive companion demo for the Foundry.blog article 'AI-Native UX: Beyond the Chat Box'.">
+  <meta property="og:url" content="https://foundry.blog/">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+
+  <!-- Subtle Material Grid Background -->
+  <div class="bg-ambient" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="../" class="brand-badge" title="Foundry.blog Home">
+          <div class="brand-logo">FB</div>
+          <div class="brand-name">Foundry.blog</div>
+        </a>
+
+        <!-- Breadcrumb Nav -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <span class="breadcrumb-separator">/</span>
+          <a href="../" class="breadcrumb-link">Articles</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">AI-Native UX</span>
+        </nav>
+      </div>
+
+      <!-- Header External Link to Blog -->
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <a href="https://foundry.blog/" target="_blank" rel="noopener noreferrer" class="header-blog-link" title="Open article on Foundry.blog">
+          <span>Read more on Foundry.blog</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content" style="padding-top: 36px; padding-bottom: 60px;">
+    
+    <!-- Hero Header (Article Level) -->
+    <div class="home-hero" style="margin-bottom: 24px;">
+      <div class="home-badge">
+        <span>INTERACTIVE ARTICLE DEMO</span>
+        <span>•</span>
+        <span>FOUNDRY.BLOG</span>
+      </div>
+      <h1 class="home-title" style="font-size: 2.25rem; margin-bottom: 8px;">
+        AI-Native UX: Beyond the Chat Box
+      </h1>
+      <p class="home-desc" style="max-width: 740px; margin: 0 auto;">
+        Article by <strong>Samdeesh Menia</strong>. Interactive companion demonstration exploring how enterprise software evolves past chatbot text dumps into direct intent routing, proactive human-in-the-loop governance, and autonomous self-healing.
+      </p>
+    </div>
+
+    <!-- ========================================================
+         FLAT NAVIGATION TABS (3 Interactive Levels)
+         ======================================================== -->
+    <nav class="level-tabs-nav" id="level-tabs" aria-label="Demo Levels Navigation">
+      <button type="button" class="level-tab-btn active" data-tab="level-2" id="tab-btn-level-2">
+        <span class="tab-level-badge">02</span>
+        <div class="tab-meta">
+          <span class="tab-title-text">Level 2: Direct-Action Routing</span>
+          <span class="tab-sub-text">Intent Navigation & Surface Projection</span>
+        </div>
+      </button>
+
+      <button type="button" class="level-tab-btn" data-tab="level-3" id="tab-btn-level-3">
+        <span class="tab-level-badge">03</span>
+        <div class="tab-meta">
+          <span class="tab-title-text">Level 3: Proactive Governance</span>
+          <span class="tab-sub-text">Human-in-the-Loop (HITL) Authorization</span>
+        </div>
+      </button>
+
+      <button type="button" class="level-tab-btn" data-tab="level-4" id="tab-btn-level-4">
+        <span class="tab-level-badge">04</span>
+        <div class="tab-meta">
+          <span class="tab-title-text">Level 4: Autopilot Operations</span>
+          <span class="tab-sub-text">Autonomous Log & Smart Approvals</span>
+        </div>
+      </button>
+    </nav>
+
+    <!-- ========================================================
+         PANE 2: Direct-Action Intent Search (Level 2)
+         ======================================================== -->
+    <section class="level-tab-pane active" id="pane-level-2" aria-labelledby="tab-btn-level-2">
+      <div class="demo-section">
+        <div class="search-route-hero" style="margin-bottom: 20px;">
+          <div style="font-size: 0.74rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px;">
+            LEVEL 2 • INTENT NAVIGATION
+          </div>
+          <h2 class="search-route-title" style="font-size: 1.45rem;">Direct-Action Routing</h2>
+          <p style="color: var(--gray-600); font-size: 0.92rem;">
+            Chatbots dump a 5-step manual. AI-native UX routes user queries directly into executable surfaces with zero conversational friction.
+          </p>
+        </div>
+
+        <!-- Search Box with Live Autosuggest -->
+        <div class="search-box-wrapper">
+          <div class="search-input-container">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="main-search-input" 
+              class="search-input-field" 
+              placeholder="Type 'statements', 'margin', or 'churn'..." 
+              autocomplete="off"
+            >
+            <button class="btn btn-glass btn-sm" id="btn-clear-search" style="padding: 2px 8px; font-size: 0.75rem; display: none;">Clear</button>
+          </div>
+
+          <!-- Autosuggest Dropdown (2-3 options) -->
+          <div class="autosuggest-dropdown" id="autosuggest-menu">
+            <!-- Item 1 -->
+            <div class="autosuggest-item" data-action="statements">
+              <div class="autosuggest-item-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <div>
+                  <div class="autosuggest-item-title">Treasury & Bank Statements</div>
+                  <div class="autosuggest-item-sub">Jump directly to Foundry Corp monthly accounting PDFs</div>
+                </div>
+              </div>
+              <span class="autosuggest-badge">Direct Surface ➔</span>
+            </div>
+
+            <!-- Item 2 (Relatable Financial Telemetry) -->
+            <div class="autosuggest-item" data-action="revenue">
+              <div class="autosuggest-item-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                <div>
+                  <div class="autosuggest-item-title">Operating Margin & Inactive Seat Leaks</div>
+                  <div class="autosuggest-item-sub">Review 142 unused software licenses and recoup $48K annual waste</div>
+                </div>
+              </div>
+              <span class="autosuggest-badge">Direct Surface ➔</span>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="autosuggest-item" data-action="churn">
+              <div class="autosuggest-item-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <div>
+                  <div class="autosuggest-item-title">Enterprise Account Churn Diagnostic</div>
+                  <div class="autosuggest-item-sub">Review high-value accounts at risk with retention cockpit</div>
+                </div>
+              </div>
+              <span class="autosuggest-badge">Direct Surface ➔</span>
+            </div>
+          </div>
+
+          <!-- Sample Query Pills -->
+          <div class="sample-queries-row">
+            <span style="font-size: 0.75rem; color: var(--gray-500); align-self: center;">Try typing:</span>
+            <button type="button" class="sample-query-pill" data-query="Where are my statements?">"Where are my statements?"</button>
+            <button type="button" class="sample-query-pill" data-query="Where did we lose margin?">"Where did we lose margin?"</button>
+            <button type="button" class="sample-query-pill" data-query="Which enterprise accounts churned?">"Which accounts churned?"</button>
+          </div>
+        </div>
+
+        <!-- Action Landing Page (Appears on click) -->
+        <div class="direct-landing-card open" id="direct-landing-container" style="margin-top: 24px;">
+          
+          <!-- Skeleton Loader (Mimics loading state) -->
+          <div id="landing-skeleton" class="landing-skeleton-loader" style="display: none;">
+            <div class="skeleton-line" style="width: 35%;"></div>
+            <div class="skeleton-line" style="width: 60%; height: 24px;"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+
+          <!-- View A: Statements Page (Default visible) -->
+          <div class="landing-content-panel" id="panel-statements">
+            <div class="landing-header">
+              <div>
+                <div style="font-size: 0.72rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600;">
+                  FOUNDRY CORP TREASURY • DIRECT ACTION LANDING
+                </div>
+                <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--gray-900); margin-top: 2px;">
+                  Commercial Checking & Treasury Statements
+                </h3>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 0.72rem; color: var(--gray-500);">Treasury Balance</div>
+                <div style="font-family: var(--font-mono); font-size: 1.25rem; color: var(--status-success-text); font-weight: 700;">
+                  $1,420,850.00
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 8px;">
+              Zero wasted conversational turns. Click to immediately download authenticated fiscal records:
+            </div>
+
+            <div class="statements-grid">
+              <div class="statement-box">
+                <div>
+                  <strong style="color: var(--gray-900);">October 2026 Statement</strong>
+                  <div style="font-size: 0.78rem; color: var(--gray-500);">Cycle: Oct 01 – Oct 24, 2026</div>
+                  <div style="margin-top: 6px; font-size: 0.82rem; color: var(--status-success-text); font-weight: 600;">+$428,100.00 Net Inflow</div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm action-download-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download PDF</span>
+                </button>
+              </div>
+
+              <div class="statement-box">
+                <div>
+                  <strong style="color: var(--gray-900);">September 2026 Statement</strong>
+                  <div style="font-size: 0.78rem; color: var(--gray-500);">Cycle: Sep 01 – Sep 30, 2026</div>
+                  <div style="margin-top: 6px; font-size: 0.82rem; color: var(--status-success-text); font-weight: 600;">+$395,450.00 Net Inflow</div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm action-download-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download PDF</span>
+                </button>
+              </div>
+
+              <div class="statement-box">
+                <div>
+                  <strong style="color: var(--gray-900);">August 2026 Statement</strong>
+                  <div style="font-size: 0.78rem; color: var(--gray-500);">Cycle: Aug 01 – Aug 31, 2026</div>
+                  <div style="margin-top: 6px; font-size: 0.82rem; color: var(--status-success-text); font-weight: 600;">+$410,200.00 Net Inflow</div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm action-download-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download PDF</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- View B: Relatable Expense Diagnostic (Unused SaaS Licenses) -->
+          <div class="landing-content-panel" id="panel-revenue" style="display: none;">
+            <div class="landing-header">
+              <div>
+                <div style="font-size: 0.72rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600;">
+                  FINANCIAL TELEMETRY • DIRECT DIAGNOSTIC
+                </div>
+                <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--gray-900); margin-top: 2px;">
+                  Operating Margin & Expense Leaks
+                </h3>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 0.72rem; color: var(--gray-500);">Identified Drag</div>
+                <div id="revenue-drag-display" style="font-family: var(--font-mono); font-size: 1.25rem; color: var(--status-danger-text); font-weight: 700;">
+                  -$48,200/yr (3.4% Margin Drag)
+                </div>
+              </div>
+            </div>
+
+            <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px; margin-top: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span class="activity-tag tag-pending" id="driver-status-tag" style="font-size: 0.7rem;">Primary Driver Isolated</span>
+                <strong style="color: var(--gray-900); font-size: 0.92rem;">142 Inactive Enterprise Software Seats</strong>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 16px;">
+                Foundry Corp pays $48,200/yr for 142 assigned SaaS licenses with zero user logins over the last 90 days across dormant project workspaces.
+              </p>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-apply-cdn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="8.5" cy="7" r="4"></circle>
+                  <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                <span>Auto-Reclaim Inactive Seats</span>
+              </button>
+              <div id="cdn-success-box" style="display: none; margin-top: 14px; padding: 12px 14px; background: var(--status-success-bg); border: 1px solid var(--status-success-border); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--status-success-text);">
+                <strong>Seats Reclaimed:</strong> 142 dormant licenses revoked across unused workspaces. $48,200/yr recouped to operating margin.
+              </div>
+            </div>
+          </div>
+
+          <!-- View C: Churn Diagnostic Page -->
+          <div class="landing-content-panel" id="panel-churn" style="display: none;">
+            <div class="landing-header">
+              <div>
+                <div style="font-size: 0.72rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600;">
+                  RETENTION COCKPIT • DIRECT ACTION
+                </div>
+                <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--gray-900); margin-top: 2px;">
+                  Enterprise Customer Churn Risk
+                </h3>
+              </div>
+            </div>
+
+            <div style="display: grid; gap: 10px; margin-top: 8px;">
+              <div style="padding: 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong style="color: var(--gray-900);">Acme Global ($180K ARR)</strong>
+                  <div style="font-size: 0.78rem; color: var(--gray-500);">Contract renewal in 42 days • Seat activity down 34%</div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" id="btn-schedule-qbr">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Schedule Executive QBR</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Stepped Navigation Footer -->
+        <div class="tab-pane-footer">
+          <a href="../" class="btn btn-glass btn-sm">
+            <span>← Back to Articles Home</span>
+          </a>
+          <button type="button" class="btn btn-primary btn-sm" onclick="window.switchTab('level-3')">
+            <span>Next: Level 3 • Proactive Governance →</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PANE 3: Proactive AI & HITL Smart Suggestions (Level 3)
+         ======================================================== -->
+    <section class="level-tab-pane" id="pane-level-3" aria-labelledby="tab-btn-level-3">
+      <div class="demo-section">
+        <div class="search-route-hero" style="margin-bottom: 20px;">
+          <div style="font-size: 0.74rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px;">
+            LEVEL 3 • PROACTIVE GOVERNANCE
+          </div>
+          <h2 class="search-route-title" style="font-size: 1.45rem;">Human-in-the-Loop Governance</h2>
+          <p style="color: var(--gray-600); font-size: 0.92rem;">
+            Background AI flags anomalies before customer impact, synthesizing diagnostic telemetry for rapid human signoff.
+          </p>
+        </div>
+
+        <div class="operations-grid" style="grid-template-columns: 1fr;">
+          <!-- Level 3 - Proactive AI with Human-in-the-Loop (HITL) -->
+          <div class="smart-suggestion-card">
+            <div class="suggestion-header">
+              <span class="suggestion-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                PROACTIVE OBSERVATION (LEVEL 3 HITL)
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-500);">Confidence: 98%</span>
+            </div>
+
+            <div class="suggestion-body">
+              <div>
+                <h3 style="font-family: var(--font-display); font-size: 1.22rem; color: var(--gray-900); margin-bottom: 6px;">
+                  Anomaly Detected: EU Payment Gateway Latency Spike (+14.8%)
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.5;">
+                  Detected 12 minutes ago on Frankfurt edge. 3DS authentication timeouts spiking across European issuing banks due to expired certificate handshake.
+                </p>
+
+                <div style="margin-top: 10px; font-size: 0.8rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 500;">
+                  ➔ Suggested Resolution: Reroute 80% EUR volume to secondary processor + auto-refresh token.
+                </div>
+              </div>
+
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-primary" id="btn-approve-fix" style="width: 100%; padding: 10px 16px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  <span>Approve & Execute Fix</span>
+                </button>
+                <div id="hitl-status-text" style="font-size: 0.75rem; color: var(--gray-500); margin-top: 8px;">
+                  Awaiting human supervisor authorization
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepped Navigation Footer -->
+        <div class="tab-pane-footer">
+          <button type="button" class="btn btn-glass btn-sm" onclick="window.switchTab('level-2')">
+            <span>← Back to Level 2</span>
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" onclick="window.switchTab('level-4')">
+            <span>Next: Level 4 • Autopilot Operations →</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PANE 4: Autonomous Autopilot & Activity Log (Level 4)
+         ======================================================== -->
+    <section class="level-tab-pane" id="pane-level-4" aria-labelledby="tab-btn-level-4">
+      <div class="demo-section">
+        <div class="search-route-hero" style="margin-bottom: 20px;">
+          <div style="font-size: 0.74rem; color: var(--primary-blue); font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px;">
+            LEVEL 4 • CONTINUOUS AUTOPILOT
+          </div>
+          <h2 class="search-route-title" style="font-size: 1.45rem;">Autopilot Operations Log</h2>
+          <p style="color: var(--gray-600); font-size: 0.92rem;">
+            Self-healing business infrastructure running within policy guardrails. Exactly 1 item awaiting human director review with smart recommendation paths and custom override.
+          </p>
+        </div>
+
+        <div class="operations-grid" style="grid-template-columns: 1fr;">
+          <!-- Level 3 - Autonomous Autopilot & 1 Awaiting Approval -->
+          <div class="activity-card">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--gray-900);">
+                  Foundry Corp System Activity Log
+                </h3>
+                <div style="font-size: 0.78rem; color: var(--gray-500);">
+                  Autonomous actions running continuously within guardrails. 1 item awaiting review.
+                </div>
+              </div>
+              <span class="activity-tag tag-auto">Autopilot Active</span>
+            </div>
+
+            <!-- Exactly ~5 Items + 1 Awaiting Approval -->
+            <div class="activity-list" id="activity-log-items">
+              
+              <!-- Item 1: AWAITING APPROVAL with Smart Suggestions & Custom Override Input -->
+              <div class="activity-item awaiting-approval" id="item-pending-approval" style="flex-direction: column; align-items: stretch; gap: 14px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="activity-tag tag-pending" id="tag-pending-badge">AWAITING APPROVAL</span>
+                    <div>
+                      <strong style="color: var(--gray-900);" id="text-pending-title">PR-402: Auto-scaling worker cluster budget adjustment</strong>
+                      <div style="font-size: 0.75rem; color: var(--gray-500);" id="text-pending-sub">
+                        Estimated +$320/mo cost increase to absorb forecasted Q4 traffic surge.
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-toggle-drawer">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    <span id="btn-toggle-text">Review Options</span>
+                  </button>
+                </div>
+
+                <!-- Interactive Suggestions & Override Drawer -->
+                <div class="approval-drawer" id="approval-drawer" style="border-top: 1px solid var(--gray-200); padding-top: 12px;">
+                  <div style="font-size: 0.76rem; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>Recommended Decision Paths:</span>
+                  </div>
+
+                  <!-- Suggested Quick Action Pills -->
+                  <div class="suggestion-actions-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <button type="button" class="approval-option-pill active" data-directive="Approve proposed +$320/mo allocation for full cluster redundancy">
+                      Approve Proposed (+$320/mo)
+                    </button>
+                    <button type="button" class="approval-option-pill" data-directive="Cap budget at +$150/mo and mandate spot compute instances">
+                      Cap at +$150/mo with Spot Instances
+                    </button>
+                    <button type="button" class="approval-option-pill" data-directive="Defer budget increase pending synthetic load test > 8,000 RPS">
+                      Defer Pending Stress Test
+                    </button>
+                  </div>
+
+                  <!-- Custom Override Text Input -->
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <div style="flex: 1;">
+                      <input 
+                        type="text" 
+                        id="approval-override-input" 
+                        class="approval-input-field" 
+                        value="Approve proposed +$320/mo allocation for full cluster redundancy" 
+                        placeholder="Or enter custom override directive..."
+                      >
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-submit-approval" style="white-space: nowrap;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Authorize Directive</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2: AUTONOMOUS -->
+              <div class="activity-item">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="activity-tag tag-auto">AUTONOMOUS</span>
+                  <div>
+                    <strong style="color: var(--gray-900);">Pruned 1,420 idle Postgres connections on EU-West-1</strong>
+                    <div style="font-size: 0.75rem; color: var(--gray-500);">Resolved in 320ms • $0 cost impact</div>
+                  </div>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--gray-500); font-family: var(--font-mono);">14m ago</span>
+              </div>
+
+              <!-- Item 3: AUTONOMOUS -->
+              <div class="activity-item">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="activity-tag tag-auto">AUTONOMOUS</span>
+                  <div>
+                    <strong style="color: var(--gray-900);">Distributed hot-key cache replica to Singapore Edge POP</strong>
+                    <div style="font-size: 0.75rem; color: var(--gray-500);">Resolved in 180ms • P99 latency dropped from 380ms to 24ms</div>
+                  </div>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--gray-500); font-family: var(--font-mono);">1h ago</span>
+              </div>
+
+              <!-- Item 4: RESOLVED -->
+              <div class="activity-item">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="activity-tag tag-resolved">RESOLVED</span>
+                  <div>
+                    <strong style="color: var(--gray-900);">SSL certificate auto-renewed for api.foundry-corp.internal</strong>
+                    <div style="font-size: 0.75rem; color: var(--gray-500);">ACME challenge completed with zero dropped handshakes</div>
+                  </div>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--gray-500); font-family: var(--font-mono);">3h ago</span>
+              </div>
+
+              <!-- Item 5: SYSTEM AUDIT -->
+              <div class="activity-item">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="activity-tag tag-resolved">SYSTEM AUDIT</span>
+                  <div>
+                    <strong style="color: var(--gray-900);">Daily disaster recovery snapshot validated across 3 zones</strong>
+                    <div style="font-size: 0.75rem; color: var(--gray-500);">100% SHA-256 integrity hash verification passed</div>
+                  </div>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--gray-500); font-family: var(--font-mono);">5h ago</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepped Navigation Footer -->
+        <div class="tab-pane-footer">
+          <button type="button" class="btn btn-glass btn-sm" onclick="window.switchTab('level-3')">
+            <span>← Back to Level 3</span>
+          </button>
+          <a href="../" class="btn btn-primary btn-sm">
+            <span>Explore Other Articles on Home →</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with Backlink -->
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        Interactive Demo Companion • <a href="https://foundry.blog/" class="footer-link">Foundry.blog</a>
+      </div>
+      <div style="margin-top: 4px;">
+        <a href="https://foundry.blog/" class="footer-link" style="font-size: 0.8rem;">foundry.blog ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

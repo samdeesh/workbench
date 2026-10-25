@@ -1,0 +1,15 @@
+{
+  "name": "Foundry.blog Interactive Demos",
+  "short_name": "Foundry.blog",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#1A73E8",
+  "background_color": "#F8FAFC"
+}

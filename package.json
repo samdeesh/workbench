@@ -1,0 +1,28 @@
+{
+  "name": "blog-demos",
+  "version": "1.0.0",
+  "description": "Interactive companion demos and blueprints for articles published on Foundry.blog",
+  "homepage": "https://foundry.blog/",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "blog-demos",
+    "interactive-demo",
+    "ai-native-ux",
+    "generative-ui",
+    "ambient-ai",
+    "github-pages"
+  ],
+  "author": {
+    "name": "Samdeesh Menia",
+    "url": "https://foundry.blog/samdeesh/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer": "^25.16.0",
+    "vite": "^6.2.0"
+  }
+}

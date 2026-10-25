@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+*.mp3
+*.mp4
+*.webm
+*.wav
+*.m4a
+assets/audio/
+assets/video/
+
